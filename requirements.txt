@@ -4,4 +4,4 @@ Python==3.7.9
 Node.js
 
 https://www.youtube.com/watch?v=f1R_bykXHGE
-minuta: 32:34
+minuta: 43:11
