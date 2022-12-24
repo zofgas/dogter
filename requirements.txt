@@ -4,7 +4,10 @@ Python==3.7.9
 Node.js
 
 https://www.youtube.com/watch?v=f1R_bykXHGE
-minuta: 1:04:13
+minuta: 1:26:00
 
 Na filmiku używa bash'a
 Żeby wejść w utworzone wirtualne środowisko w bashu wpisz komende: pipenv shell
+
+Uruchomienie strony: ./manage.py runserver
+Wyłączenie strony: ctrl+C
