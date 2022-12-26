@@ -11,7 +11,7 @@ def tweet_list_view(request, *args, **kwargs):
     REST API VIEW
     """
     qs = Tweet.objects.all()
-    tweet_list = [{"id": x.id, "content": x.content} for x in qs]
+    tweet_list = [{"id": x.id, "content": x.content, "likes": 50} for x in qs]
     data = {
         "isUser": False,
         "response": tweet_list
