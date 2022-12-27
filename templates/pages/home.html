@@ -104,7 +104,7 @@ this is amazing!!!
         xhr.onload = function() {
         console.log(xhr.response)
         const serverResponse = xhr.response
-        var listedItems = serverResponse.response
+        const listedItems = serverResponse
         var finalTweetStr = ""
         var i;
         for (i=0; i<listedItems.length; i++) {
