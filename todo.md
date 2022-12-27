@@ -1,9 +1,10 @@
 1. Tweets
-    -> Tworzenie
-        -> Tekst
-        -> Zdjęcia
-    -> Usuwanie
-    -> Przekazywanie dalej
+    -> User permissions
+        -> Tworzenie
+            -> Tekst
+            -> Zdjęcia
+        -> Usuwanie
+        -> Przekazywanie dalej
 
 2. User
     -> Rejestracja
