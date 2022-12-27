@@ -3,9 +3,10 @@ from django.conf import settings
 from django.http import HttpResponse, Http404, JsonResponse
 from .forms import TweetForm
 from .models import Tweet
-from .serializers import TweetSerializer
+from .serializers import TweetSerializer, TweetActionSerializer
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
@@ -13,6 +14,7 @@ def home_view(request, *args, **kwargs):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def tweet_create_view(request, *args, **kwargs):
     serializer = TweetSerializer(data = request.POST)
     if serializer.is_valid(raise_exception=True):
@@ -28,6 +30,48 @@ def tweet_detail_view(request, tweet_id, *args, **kwargs):
     obj = qs.first()
     serializer = TweetSerializer(obj)
     return Response(serializer.data, status=200)
+
+
+@api_view(['DELETE','POST'])
+@permission_classes([IsAuthenticated])
+def tweet_delete_view(request, tweet_id, *args, **kwargs):
+    qs = Tweet.objects.filter(id=tweet_id)
+    if not qs.exists():
+        return Response({}, status=404)
+    qs = qs.filter(user = request.user)
+    if not qs.exists():
+        return Response({"message":"You cannot delete this tweet"},status=401)
+    obj = qs.first()
+    obj.delete()
+    return Response({"message":"tweet removed"}, status=200)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def tweet_action_view(request, *args, **kwargs):
+    '''
+    id is required.
+    Action options are: like, unlike, retweet
+    '''
+    serializer = TweetActionSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        data = serializer.validated_data
+        tweet_id = data.get("id")
+        action = data.get("action")
+        qs = Tweet.objects.filter(id=tweet_id)
+        if not qs.exists():
+            return Response({}, status=404)
+        obj = qs.first()
+        if action == "like":
+            obj.likes.add(request.user)
+            serializer = TweetSerializer(obj)
+            return Response(serializer.data, status=200)
+        elif action == "unlike":
+            obj.likes.remove(request.user)
+        elif action == "retweet":
+            # this is todo
+            pass
+    return Response({}, status=200)
+
 
 
 @api_view(['GET'])
