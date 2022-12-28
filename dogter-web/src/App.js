@@ -1,13 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { TweetList } from './tweets'
 
 function App() {
-  const [tweets, setTweets] = useState([])
-  useEffect(() => {
-    const tweetItems = [{"content": "It works!!"}, {"content": "Hi dog"}]
-    setTweets(tweetItems)
-  }, [])
   return (
     <div className="App">
       <header className="App-header">
@@ -15,11 +11,9 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <p>
-          {tweets.map((tweet, index) => {
-            return <li>{tweet.content}</li>
-          })}
-        </p>
+        <div>
+          <TweetList />
+        </div>
         <a
           className="App-link"
           href="https://reactjs.org"

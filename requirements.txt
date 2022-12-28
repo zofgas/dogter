@@ -1,6 +1,7 @@
 Django==3.2.16
 Python==3.7.9
 pipenv install djangorestframework
+pipenv install django-cors-headers
 
 Node.js - Jak pobrać -> 5:12:14
 Jeżeli wam to nie działa (tak jak mi jej) to żeby ściągnąć w środku wirtualnego środowiska wpiszcie te 2 komendy:
