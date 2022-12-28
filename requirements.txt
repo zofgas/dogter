@@ -1,12 +1,17 @@
 Django==3.2.16
 Python==3.7.9
-
 pipenv install djangorestframework
 
-Node.js
+Node.js - Jak pobrać -> 5:12:14
+Jeżeli wam to nie działa (tak jak mi jej) to żeby ściągnąć w środku wirtualnego środowiska wpiszcie te 2 komendy:
+pip install nodeenv
+nodeenv -p
+
+Uruchomienie strony przez react: npm start -> uważajcie żeby być w folderze dogter-web
+
 
 https://www.youtube.com/watch?v=f1R_bykXHGE
-minuta: 5:12:14
+minuta: 5:26:28
 
 Na filmiku używa bash'a
 Żeby wejść w utworzone wirtualne środowisko w bashu wpisz komende: pipenv shell
