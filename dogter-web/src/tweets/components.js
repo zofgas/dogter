@@ -1,5 +1,5 @@
 import React, {useEffect, useState}  from 'react'
-import { loadTweets } from '../lookup'
+import {createTweet, loadTweets } from '../lookup'
 
 export function TweetsComponent(props) {
   const textAreaRef = React.createRef()
@@ -9,11 +9,15 @@ export function TweetsComponent(props) {
     event.preventDefault()
     const newVal = textAreaRef.current.value
     let tempNewTweets = [...newTweets]
-    tempNewTweets.unshift({
-      content: newVal,
-      likes: 0,
-      id: 420
+    createTweet(newVal,(response,status)=>{
+      if(status ===201){tempNewTweets.unshift(response)}
+      else{
+        console.log(response)
+        alert("error occured try again")
+      }
+      
     })
+    
     setNewTweets(tempNewTweets)
     textAreaRef.current.value = ''
   } 
@@ -33,6 +37,7 @@ export function TweetsComponent(props) {
 export function TweetList(props) {
     const [tweetsInit, setTweetsInit] = useState([])
     const [tweets, setTweets] = useState([])
+    const [tweetsDidSet,setTweetsDidSet] = useState(false)
     useEffect(() => {
       const final = [...props.newTweets].concat(tweetsInit)
       if (final.length !== tweets.length) {
@@ -40,15 +45,18 @@ export function TweetList(props) {
       }
     }, [props.newTweets, tweets, tweetsInit])
     useEffect(() => {
-      const myCallback = (response, status) => {
-        if (status === 200) {
-          setTweetsInit(response)
-        } else {
-          alert("There was an error")
+      if(tweetsDidSet===false){
+        const myCallback = (response, status) => {
+          if (status === 200) {
+            setTweetsInit(response)
+            setTweetsDidSet(true)
+          } else {
+            alert("There was an error")
+          }
         }
-      }
-      loadTweets(myCallback)
-    }, [tweetsInit])
+        loadTweets(myCallback)
+    }
+    }, [tweetsInit,tweetsDidSet,setTweetsDidSet])
     return tweets.map((item, index) => {
       return <Tweet tweet={item} className='my-5 py-5 border bg-white text-dark' key={`${index}-{item.id}`}/>
     })
