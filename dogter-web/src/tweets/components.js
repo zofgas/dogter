@@ -5,20 +5,22 @@ export function TweetsComponent(props) {
   const textAreaRef = React.createRef()
   const [newTweets, setNewTweets] = useState([])
 
+  const handleBackendUpdate = (response, status) => {
+    let tempNewTweets = [...newTweets]
+    if(status === 201) {
+      tempNewTweets.unshift(response)
+      setNewTweets(tempNewTweets)
+    }
+    else {
+      console.log(response)
+      alert("error occured try again")
+    }
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const newVal = textAreaRef.current.value
-    let tempNewTweets = [...newTweets]
-    createTweet(newVal,(response,status)=>{
-      if(status ===201){tempNewTweets.unshift(response)}
-      else{
-        console.log(response)
-        alert("error occured try again")
-      }
-      
-    })
-    
-    setNewTweets(tempNewTweets)
+    createTweet(newVal, handleBackendUpdate)
     textAreaRef.current.value = ''
   } 
   return <div className={props.className}>
