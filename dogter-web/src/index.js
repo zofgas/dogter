@@ -10,9 +10,11 @@ if (appEl) {
   ReactDOM.render(<App />, appEl);
 }
 
+const e = React.createElement
+
 const tweetsEl = document.getElementById("dogter")
 if (tweetsEl) {
-  ReactDOM.render(<TweetsComponent />, tweetsEl);
+  ReactDOM.render(e(TweetsComponent, tweetsEl.dataset), tweetsEl);
 }
 
 
