@@ -1,14 +1,13 @@
 import React from 'react'
-import {apiTweetCreate} from './lookup'
+import { apiTweetCreate } from './lookup'
 
 export function TweetCreate(props) {
   const textAreaRef = React.createRef()
-  const {didTweet} = props
+  const { didTweet } = props
   const handleBackendUpdate = (response, status) => {
-    if(status === 201) {
+    if (status === 201) {
       didTweet(response)
-    }
-    else {
+    } else {
       console.log(response)
       alert("error occured try again")
     }
@@ -19,13 +18,13 @@ export function TweetCreate(props) {
     const newVal = textAreaRef.current.value
     apiTweetCreate(newVal, handleBackendUpdate)
     textAreaRef.current.value = ''
-  } 
+  }
   return <div className={props.className}>
-          <form onSubmit={handleSubmit}>
-            <textarea ref={textAreaRef} required={true} className='form-control' name='tweet'>
+    <form onSubmit={handleSubmit}>
+      <textarea ref={textAreaRef} required={true} className='form-control' name='tweet'>
 
-            </textarea>
-            <button type='submit' className='btn btn-primary my-3'>Bark</button>
-          </form>
-        </div>
+      </textarea>
+      <button type='submit' className='btn btn-primary my-3'>Bark</button>
+    </form>
+  </div>
 }
