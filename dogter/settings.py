@@ -135,7 +135,7 @@ STATIC_ROOT= os.path.join(BASE_DIR,"static-root")
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/.*$'
@@ -153,9 +153,9 @@ if DEBUG:
     DEFAULT_RENDERER_CLASSES += [
         'rest_framework.renderers.BrowsableAPIRenderer',
     ]
-    DEFAULT_AUTHENTICATION_CLASSES+=[
-        'dogter.rest_api.dev.DevAuthentication'
-    ]
+    #DEFAULT_AUTHENTICATION_CLASSES+=[
+   #     'dogter.rest_api.dev.DevAuthentication'
+   # ]
 REST_FRAMEWORK = {
 
     'DEFAULT_AUTHENTICATION_CLASSES': DEFAULT_AUTHENTICATION_CLASSES,
