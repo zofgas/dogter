@@ -4,6 +4,7 @@ from .models import Profile
 from .forms import ProfileForm
 
 
+
 def profile_update_view(request, *args, **kwargs):
     if not request.user.is_authenticated:
         return redirect("/login?next=/profile/update")
