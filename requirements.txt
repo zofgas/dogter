@@ -13,7 +13,7 @@ jezeli jest error z react-scripts przy uruchamiaiu z reactem: npm install react-
 
 
 https://www.youtube.com/watch?v=f1R_bykXHGE
-minuta: 09:05:47
+minuta: 09:46:48
 
 Na filmiku używa bash'a   
 Żeby wejść w utworzone wirtualne środowisko w bashu wpisz komende: pipenv shell
