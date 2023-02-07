@@ -3,19 +3,14 @@ Python==3.7.9
 pipenv install djangorestframework
 pipenv install django-cors-headers
 
-Node.js - Jak pobrać -> 5:12:14
+Node.js - pobrać
 Jeżeli wam to nie działa (tak jak mi) to żeby ściągnąć w środku wirtualnego środowiska wpiszcie te 2 komendy:
 pip install nodeenv
 nodeenv -p
 
 Uruchomienie strony przez react: npm start -> uważajcie żeby być w folderze dogter-web
 jezeli jest error z react-scripts przy uruchamiaiu z reactem: npm install react-scripts --save
-
-
-https://www.youtube.com/watch?v=f1R_bykXHGE
-minuta: 10:09:29
-
-Na filmiku używa bash'a   
+   
 Żeby wejść w utworzone wirtualne środowisko w bashu wpisz komende: pipenv shell
 
 Uruchomienie strony: ./manage.py runserver
@@ -24,9 +19,6 @@ Wyłączenie strony: ctrl+C
 Stworzenie konta administratora:
 ./manage.py createsuperuser
 Strona: 127.0.0.1:8000/admin
-
-# w plikach templates/react/ i templates/base.html specjalnie jest trochę inny kod niż on ma, nie zmieniajcie chyba że on coś zmienia
-# jezeli korzysta z ktoregos z plikow z templates/react/, prawdopodobnie zadziala skorzystanie z tego jednego ktory my mamy
 
 Stworzone konta adminów:
 User: zosia
@@ -40,5 +32,3 @@ Hasło:janek
 User: ola
 Email: [puste]
 Hasło: ola
-
-
